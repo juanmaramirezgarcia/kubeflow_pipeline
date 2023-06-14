@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: iris-classifier-kubeflow-demo-pipeline-
-  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.22, pipelines.kubeflow.org/pipeline_compilation_time: '2023-06-14T17:24:10.430149',
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.22, pipelines.kubeflow.org/pipeline_compilation_time: '2023-06-14T18:32:53.500005',
     pipelines.kubeflow.org/pipeline_spec: '{"description": "A sample pipeline that
       performs IRIS classifier task", "inputs": [{"name": "data_path", "type": "String"}],
       "name": "IRIS classifier Kubeflow Demo Pipeline"}'}
@@ -298,7 +298,7 @@ spec:
             import pandas as pd
             print("---- Inside prepare_data component ----")
             # Load dataset
-            df = pd.read_csv("https://raw.githubusercontent.com/juanmaramirezgarcia/kubeflow_pipeline/main/iris.csv")
+            df = pd.read_csv("https://raw.githubusercontent.com/juanmaramirezgarcia/kubeflow_pipeline_local/main/iris.csv")
             df = df.dropna()
             df.to_csv(f'data/final_df.csv', index=False)
             print("\n ---- data csv is saved to PV location /data/final_df.csv ----")
@@ -328,7 +328,7 @@ spec:
           "program_path=$(mktemp)\nprintf \"%s\" \"$0\" > \"$program_path\"\npython3
           -u \"$program_path\" \"$@\"\n", "def prepare_data():\n    import pandas
           as pd\n    print(\"---- Inside prepare_data component ----\")\n    # Load
-          dataset\n    df = pd.read_csv(\"https://raw.githubusercontent.com/juanmaramirezgarcia/kubeflow_pipeline/main/iris.csv\")\n    df
+          dataset\n    df = pd.read_csv(\"https://raw.githubusercontent.com/juanmaramirezgarcia/kubeflow_pipeline_local/main/iris.csv\")\n    df
           = df.dropna()\n    df.to_csv(f''data/final_df.csv'', index=False)\n    print(\"\\n
           ---- data csv is saved to PV location /data/final_df.csv ----\")\n\nimport
           argparse\n_parser = argparse.ArgumentParser(prog=''Prepare data'', description='''')\n_parsed_args
